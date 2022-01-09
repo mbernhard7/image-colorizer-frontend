@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script src="/static/scripts/main.js"></script>
+</head>
+
+<body>
+    <a class="download-link" href="" download="" target="blank_"></a>
+    <input class="file-upload-input" type='file' onchange="readURL(this);" accept="image/png, image/jpeg">
+    <div class="header">
+        <h1 class="title">Image Colorizer</h1>
+        <div class="tabbar">
+            <button class="tablink current" onclick="openPage('Colorizer', this)">Colorizer</button>
+            <button class="tablink" onclick="openPage('About', this)">About</button>
+            <button class="tablink" onclick="openPage('FAQ', this)">FAQ</button>
+        </div>
+    </div>
+    <div id="Colorizer" class="tabcontent current">
+        <div class='card'>
+            <p style="color:#fff;">The image colorizer allows you to use neural network technology to see your old black and white images in color! Click upload below and select a JPG or PNG file of less than 5 mb.</p>
+        </div>
+        <div class='columns'>
+            <div class=column>
+                <img class="upload-image" onerror="invalidImage()" src="/static/images/noimage.png" alt="Uploaded Image" />
+                <span class="error-message"></span>
+                <div style='width:100%'>
+                    <button class="upload" type="button" onclick="uploadClick()">Upload New</button>
+                    <button class="colorize" type="button" onclick="colorizeImage()" disabled>Colorize</button>
+                </div>
+                <img class="return-image" src="/static/images/loading.gif" alt="Loading..." />
+                <span class="confidence"> </span>
+                <button class="download" type="button" onClick="downloadImage()">Download</button>
+            </div>
+            <div class='example-section column'>
+                <h1 class="example-title">Example</h1>
+                <img src="/static/images/bw_example.JPG" alt="bw image" />
+                <img src="/static/images/colorized_example.JPG" alt="color image" />
+            </div>
+        </div>
+    </div>
+    <div id="About" class="tabcontent">
+        <div class="card">
+            <p class="answer">This website colorizes black and white images using a neural network backend. The neural network is an 8 layer CNN developed by Richard Zhang. You can read more about his work <a href="http://richzhang.github.io/colorization/">here</a>. Created for CSCI121 at Harvey Mudd by Miles Bernhard, Elakshi Shah, Kripesh Ranabhat, and Maria Croom.</p>
+            <a href="https://drive.google.com/uc?id=1CBwDpGFaOJYttfEd1oKijZ7r3JjC3J_X&export=download">Project Report</a>
+            <br>
+            <a href="https://github.com/mbernhard7/image-colorizer">Github</a>
+        </div>
+    </div>
+    <div id="FAQ" class="tabcontent">
+        <div class="card">
+            <h3 class='question'>What is this website for?</h3>
+            <p class='answer'>This website colorizes black and white images using a neural network.</p>
+        </div>
+        <div class="card">
+            <h3 class='question'>What happens if I upload an image with color?</h3>
+            <p class='answer'>The image will be converted to grayscale, and then the neural network will attempt to colorize it.</p>
+        </div>
+        <div class="card">
+            <h3 class='question'>Why does it say my image is too large?</h3>
+            <p class='answer'>We determined that files of above 5MB are too resource intensive. Consider converting or resizing your image.</p>
+        </div>
+        <div class="card">
+            <h3 class='question'>Why did i get a 400 error?</h3>
+            <p class='answer'>This means something went wrong trying to colorize your image. Make sure your file is not corrupted and is a valid JPG or PNG image.</p>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,221 @@
+/** General Style **/
+
+body {
+    font-family: sans-serif;
+    background-color: #131313;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow-x: hidden;
+}
+
+a {
+    text-align: center;
+    color: #1FB264;
+}
+
+img {
+    max-height: 300px;
+    max-width: 300px;
+    margin: 10px auto;
+    padding: 10px;
+    transition: all .2s ease;
+}
+
+button {
+    min-width: 50px;
+    max-width: 200px;
+    width: 45%;
+    margin: 0;
+    color: #fff;
+    background: #1FB264;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    border-bottom: 4px solid #15824B;
+    transition: all .2s ease;
+    outline: none;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+button:hover {
+    background: #1AA059;
+    color: #ffffff;
+    transition: all .2s ease;
+    cursor: pointer;
+}
+
+button:active {
+    border: 0;
+    transition: all .2s ease;
+}
+
+button:disabled,
+button[disabled] {
+    background: #777;
+    border-bottom: 4px solid #555;
+    cursor: default;
+}
+
+.card {
+    margin: 0 auto;
+    width: 60%;
+    max-width: 600px;
+    min-width: 300px;
+    text-align: center;
+
+}
+
+/** Header Style **/
+
+.header {
+    padding-top: 20px;
+    background-color: #1d1d1d;
+    width: 100%;
+    height: 100%;
+    border-bottom: 2px solid #000000;
+    text-align: center;
+}
+
+.title {
+    margin-top: 10px;
+    color: #1FB264;
+    font-size: 300%;
+}
+
+.tabbar {
+    width: 100%;
+}
+
+.tablink {
+    background: #2f2f2f;
+    float: center;
+    border-radius: 10px 10px 0px 0px;
+    border: 1px solid #1d1d1d;
+    ;
+    transition: all .2s ease;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 3px;
+    font-size: 15px;
+    width: 30%;
+    margin-left: -2.5px;
+    margin-right: -2.5px;
+    margin-bottom: -.5px;
+}
+
+.tablink:hover {
+    background: #777;
+}
+
+.tablink.current {
+    background: #1FB264;
+}
+
+.tabcontent {
+    margin: 0 auto;
+    height: 100%;
+    width: 100%;
+    display: none;
+}
+
+.tabcontent.current {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/** About Tab Style **/
+
+.aboutText {
+    text-align: center;
+    text-justify: inter-word;
+    color: #fff;
+}
+
+/** FAQ Tab Style **/
+
+.question {
+    color: #1FB264;
+    font-size: 200%;
+}
+
+.answer {
+    color: #fff;
+    font-weight: bold;
+    font-size: 130%;
+    margin: 10px;
+}
+
+/** Colorize Tab Style **/
+
+.columns {
+    padding: 10px;
+    margin: 0 auto;
+    display: inline-flex;
+    flex-wrap: wrap;
+    text-align: center;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.column {
+    vertical-align: top;
+    height: 100%;
+    max-width: 800px;
+    margin: 10px;
+    display: inline-flex;
+    flex-wrap: wrap;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    flex-grow: 0;
+}
+
+.file-upload-input {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    outline: none;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.error-message {
+    margin: 10px auto;
+    color: red;
+    width: 100%;
+    text-align: center;
+}
+
+.return-image {
+    display: none;
+}
+
+.download {
+    margin: auto;
+    display: none;
+}
+
+
+.confidence {
+    text-align: center;
+    color: #fff;
+    width: 100%;
+}
+
+.example-title {
+    color: #1FB264;
+    font-size: 200%;
+    margin: 0px;
+}
+
+
+
+.example-section {
+    background-color: #1d1d1d;
+    border-radius: 6px;
+    border: 1px solid #000000;
+    padding: 10px;
+}
