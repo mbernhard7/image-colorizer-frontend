@@ -61,7 +61,7 @@ function colorizeImage() {
                         'Access-Control-Allow-Origin': '*'
                     }
                 };
-                fetch(apiURL + '/colorize', options)
+                fetch(apiURL + '/colorize/', options)
                     .then(res => {
                         if (res.ok) {
                             res.json().then(data => {
