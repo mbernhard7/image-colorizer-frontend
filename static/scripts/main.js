@@ -1,7 +1,7 @@
 var imageName;
 var newImageName;
 var fileExtension;
-apiURL = "https://www.colorizer-backend.milesbernhard.com";
+apiURL = "https://image-colorizer-backend.onrender.com";
 if (window.location.href == 'http://127.0.0.1:8000/' || window.location.href == 'http://localhost:8000/' ) {
     apiURL = "http://127.0.0.1:5000"
 }
