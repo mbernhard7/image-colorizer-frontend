@@ -2,29 +2,35 @@
 <html>
 
 <head>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RBTKWG11TT"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'G-RBTKWG11TT');
-    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/static/css/style.css">
-    <meta name="title" property="og:title" content="Image Colorizer" />
-    <meta property="og:type" content="Website" />
-    <meta name="image" property="og:image" content="/static/images/preview.jpg"/>
-    <meta name="description" property="og:description" content="Web application that colorizes black and white images using a convolutional neural network. Created for CSCI121: Software Development at Harvey Mudd." />
     <meta name="author" content="Miles Bernhard" />
     <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
     <script src="/static/scripts/main.js"></script>
     <title>Image Colorizer</title>
 
-<link rel="canonical" href="https://image-colorizer.milestomorrow.com/"/>    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <!-- site-standards:start — managed by portfolio/scripts; edit copy in sites.json -->
+    <link rel="canonical" href="https://image-colorizer.milestomorrow.com/" />
+    <meta name="description" content="Upload a black-and-white photograph and get a colourised version back in seconds, from a model running on Cloud Run." />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Image Colorizer" />
+    <meta property="og:title" content="Image Colorizer — Bring old photographs back to colour." />
+    <meta property="og:description" content="Upload a black-and-white image and get a colourised version in seconds." />
+    <meta property="og:url" content="https://image-colorizer.milestomorrow.com/" />
+    <meta property="og:image" content="https://image-colorizer.milestomorrow.com/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Image Colorizer — Bring old photographs back to colour." />
+    <meta name="twitter:description" content="Upload a black-and-white image and get a colourised version in seconds." />
+    <meta name="twitter:image" content="https://image-colorizer.milestomorrow.com/og.png" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RBTKWG11TT"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-RBTKWG11TT");</script>
+    <!-- site-standards:end -->
   </head>
 
 <body>
@@ -87,6 +93,7 @@
             <p class='answer'>This means something went wrong trying to colorize your image. Make sure your file is not corrupted and is a valid JPG or PNG image.</p>
         </div>
     </div>
-</body>
+    <p class="built-by" style="text-align:center;padding:22px 16px;margin:0;font:14px/1.5 ui-sans-serif,-apple-system,system-ui,sans-serif;color:#8b93a1">Built by <a href="https://milestomorrow.com" style="color:inherit">Miles Bernhard</a></p>
+  </body>
 
 </html>

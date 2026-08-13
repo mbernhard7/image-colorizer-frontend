@@ -1,0 +1,16 @@
+{
+  "name": "Image Colorizer",
+  "blurb": "Upload a black-and-white image and get a colourised version in seconds.",
+  "about": "Frontend for the colorizer. The heavy model runs as a separate Cloud Run service (colorizer-backend) whose /colorize endpoint is origin-locked to this site.",
+  "stack": [
+    "Cloud Run",
+    "Python",
+    "ML"
+  ],
+  "role": "solo",
+  "year": 2023,
+  "status": "live",
+  "card": {
+    "image": "/og.png"
+  }
+}

@@ -1,0 +1,3 @@
+# project.json is for the portfolio cards, not for search.
+/.well-known/project.json
+  X-Robots-Tag: noindex
