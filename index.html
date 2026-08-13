@@ -28,8 +28,31 @@
     <meta name="twitter:title" content="Image Colorizer — Bring old photographs back to color." />
     <meta name="twitter:description" content="Upload a black-and-white image and get a colorized version in seconds." />
     <meta name="twitter:image" content="https://image-colorizer.milestomorrow.com/og.png" />
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RBTKWG11TT"></script>
-    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-RBTKWG11TT");</script>
+    <script>
+      // Analytics, with an owner kill switch: visiting any page with ?notrack=1
+      // sets a device-local flag that silences GA and the Cloudflare beacon
+      // (?notrack=0 clears it).
+      (function () {
+        try {
+          var q = new URLSearchParams(location.search);
+          if (q.has("notrack")) q.get("notrack") === "0" ? localStorage.removeItem("mt-notrack") : localStorage.setItem("mt-notrack", "1");
+          if (localStorage.getItem("mt-notrack")) return;
+        } catch (e) {}
+        var g = document.createElement("script");
+        g.async = true;
+        g.src = "https://www.googletagmanager.com/gtag/js?id=G-RBTKWG11TT";
+        document.head.appendChild(g);
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = function () { dataLayer.push(arguments); };
+        gtag("js", new Date());
+        gtag("config", "G-RBTKWG11TT");
+        var c = document.createElement("script");
+        c.defer = true;
+        c.src = "https://static.cloudflareinsights.com/beacon.min.js";
+        c.setAttribute("data-cf-beacon", '{"token": "ca019c750f5e4394aebf0322aed1ce9e"}');
+        document.head.appendChild(c);
+      })();
+    </script>
     <!-- site-standards:end -->
   </head>
 
