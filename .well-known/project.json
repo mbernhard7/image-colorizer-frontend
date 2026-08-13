@@ -1,7 +1,7 @@
 {
   "name": "Image Colorizer",
   "blurb": "Upload a black-and-white image and get a colourised version in seconds.",
-  "about": "Frontend for the colorizer. The heavy model runs as a separate Cloud Run service (colorizer-backend) whose /colorize endpoint is origin-locked to this site.",
+  "about": "Upload a black-and-white photograph and a model returns a colourised version in seconds. The frontend is static on Cloudflare Pages; the model runs as a separate Cloud Run service whose /colorize endpoint is origin-locked to this site, so the GPU work behind it can't be used as a free public API.",
   "stack": [
     "Cloud Run",
     "Python",
