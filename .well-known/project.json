@@ -8,9 +8,12 @@
     "OpenCV",
     "CNN"
   ],
-  "role": "solo",
-  "year": 2023,
-  "status": "live",
+  "links": [
+    {
+      "label": "Visit site",
+      "href": "https://image-colorizer.milestomorrow.com"
+    }
+  ],
   "card": {
     "image": "/og.png"
   }
