@@ -1,10 +1,15 @@
 var imageName;
 var newImageName;
 var fileExtension;
+var currentFile = null;
 apiURL = "https://colorizer-backend.milestomorrow.com";
 if (window.location.href == 'http://127.0.0.1:8000/' || window.location.href == 'http://localhost:8000/' ) {
-    apiURL = "http://127.0.0.1:5000"
+    apiURL = "http://127.0.0.1:8001"   // python3 app.py with DEV=1 in image-colorizer-backend
 }
+
+// The backend scales to zero and loads a 129 MB model at start; a visitor's first
+// Colorize would otherwise pay that cold start. Wake it while they pick a file.
+fetch(apiURL + '/', { mode: 'no-cors' }).catch(function () {});
 
 function uploadClick() {
     removeUpload();
@@ -24,6 +29,7 @@ function readURL(input) {
             $('.error-message').html('File larger than 5 MB maximum')
             removeUpload();
         } else {
+            currentFile = file;
             reader.onload = function(e) {
                 $('.error-message').html('');
                 $('.upload-image').attr('src', e.target.result);
@@ -42,63 +48,54 @@ function invalidImage() {
     removeUpload();
 }
 
+function setBusy(busy) {
+    var btn = $('.colorize');
+    btn.prop('disabled', busy).attr('aria-busy', busy ? 'true' : null).text(busy ? 'Colorizing\u2026' : 'Colorize');
+    $('.upload').prop('disabled', busy);
+}
+
 function colorizeImage() {
-    $('.colorize').attr('disabled', 'disabled');
-    $('.upload').attr('disabled', 'disabled');
+    if (!currentFile || $('.colorize').prop('disabled')) return;
+    setBusy(true);
+    $('.error-message').html('');
     $('.return-image').css("display", "block");
-    fetch($('.upload-image').attr('src'))
-        .then(res => res.blob())
-        .then(blob => {
-            const file = new File([blob], 'image.' + fileExtension.toLowerCase(), blob)
-            if (file) {
-                const formData = new FormData()
-                formData.append('imageFile', file)
-                const options = {
-                    method: 'POST',
-                    mode: 'cors',
-                    body: formData,
-                    headers: {
-                        'Access-Control-Allow-Origin': '*'
-                    }
-                };
-                fetch(apiURL + '/colorize', options)
-                    .then(res => {
-                        if (res.ok) {
-                            res.json().then(data => {
-                                fetch(data['image']).then(response => response.blob())
-                                    .then(blob => {
-                                        const imgURL = URL.createObjectURL(blob);
-                                        $('.return-image').attr('src', imgURL)
-                                        $('.download-link').attr('href', imgURL);
-                                        $('.confidence').html('');
-                                        $('.download').css("display", "block");
-                                        $('.upload').removeAttr("disabled");
-                                    });
-                            });
-                        } else {
-                            res.text().then(text => {
-                                console.log(text)
-                                $('.error-message').html(res.status + ": "+text);
-                                removeUpload();
-                            });
-                            removeUpload();
-                        }
-                    })
-                    .catch(error => {
-                        console.error(error);
-                        $('.error-message').html(error)
-                        removeUpload();
-                    })
-            } else {
-                removeUpload();
+    var started = Date.now();
+    var report = function (status) {
+        if (window.gtag) gtag('event', 'colorize', { status: status, duration_ms: Date.now() - started });
+    };
+
+    const formData = new FormData()
+    formData.append('imageFile', currentFile, 'image.' + fileExtension.toLowerCase())
+    fetch(apiURL + '/colorize', { method: 'POST', mode: 'cors', body: formData })
+        .then(res => {
+            if (res.ok) {
+                return res.json().then(data => {
+                    $('.return-image').attr('src', data['image'])
+                    $('.download-link').attr('href', data['image']);
+                    $('.download').css("display", "block");
+                    report('ok');
+                    setBusy(false);
+                });
             }
-        });
+            return res.text().then(text => {
+                $('.error-message').html(res.status + ": " + text);
+                $('.return-image').css("display", "none");
+                report('http_' + res.status);
+                setBusy(false);   // the upload stays; the visitor can retry or pick another file
+            });
+        })
+        .catch(error => {
+            console.error(error);
+            $('.error-message').html('The colorizer could not be reached. Try again in a moment.')
+            $('.return-image').css("display", "none");
+            report('network');
+            setBusy(false);
+        })
 }
 
 function removeUpload() {
     $('.file-upload-input').replaceWith($('.file-upload-input').clone());
     $('.return-image').css("display", "none");
-    $('.confidence').html("");
     $('.return-image').attr('src', '/static/images/loading.gif');
     $('.upload-image').attr('src', '/static/images/noimage.png');
     $('.download').css("display", "none");
@@ -107,6 +104,7 @@ function removeUpload() {
     imageName = "";
     newImageName = "";
     fileExtension = "";
+    currentFile = null;
 }
 
 function downloadImage() {
